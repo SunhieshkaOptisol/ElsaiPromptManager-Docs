@@ -1,0 +1,9 @@
+services:
+  pm-docs:
+    build: .
+    ports:
+      - "3000:80"
+    container_name: pm-docs
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
