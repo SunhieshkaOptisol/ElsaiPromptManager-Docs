@@ -46,14 +46,9 @@ prompt_manager = PromptManager(
     api_key="YOUR-ELSAI-API-KEY",
     project_id="YOUR-ELSAI-PROJECT-ID"
 )
-prompt_template = prompt_manager.get_active_prompt_version(prompt_name="YOUR-PROMPT-NAME")
-print("Prompt template:", prompt_template)
+prompt = prompt_manager.get_active_prompt_version(prompt_name="YOUR-PROMPT-NAME")
 
-filled_prompt = prompt_template.format(content="data") #If you have variables in your prompt, you can fill them in here
-print("Final prompt:", filled_prompt)
-
-# Invoke LLM with the filled prompt
-response = llm.invoke(filled_prompt)
+response = llm.invoke(prompt)
 print("LLM response:", response)`}</code>
                 </pre>
               </div>
