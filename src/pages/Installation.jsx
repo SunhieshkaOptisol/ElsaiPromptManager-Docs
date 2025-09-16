@@ -55,7 +55,7 @@ const Installation = () => {
           <h2 className="text-2xl font-bold mb-4">Prerequisites</h2>
           <p className="mb-4">Before installing , ensure you have:</p>
           <ul className="list-disc pl-6 space-y-2 mb-6">
-            <li>Python 3.10 or higher</li>
+            <li>Python 3.10, 3.11 and 3.12</li>
             <li>pip package manager</li>
             <li>Git (for GitHub installation method)</li>
           </ul>
