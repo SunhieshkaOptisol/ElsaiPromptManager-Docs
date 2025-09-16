@@ -61,6 +61,7 @@ const Configuration = () => {
                   <div className="text-white font-mono text-sm">
                     <div>ELSAI_PROMPT_API_KEY="YOUR API KEY"</div>
                     <div>PROJECT_ID="YOUR PROJECT ID"</div>
+                    <div>PROMPT_MANAGER_API_URL="YOUR DEPLOYED URL" (only for SDK version)</div>
                   </div>
                 </div>
               </div>
@@ -76,6 +77,17 @@ const Configuration = () => {
                     <li><strong>Example:</strong> ELSAI_PROMPT_API_KEY=elsai_123456789abcd</li>
                   </ul>
                 </div>
+
+                <div className="mb-6">
+                  <h4 className="text-lg font-semibold mb-3">Prompt Manager URL</h4>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong>Purpose:</strong> Helps you host the application in your server</li>
+                    <li><strong>Format:</strong> String token provided during account setup</li>
+                    <li><strong>Example:</strong> PROMPT_MANAGER_API_URL= http://promptmanager.elsaifoundry.ai</li>
+                    <li>Only needed for SDK version</li>
+                  </ul>
+                </div>
+                                
                 
                 <div className="mb-6">
                   <h4 className="text-lg font-semibold mb-3">Project ID</h4>
@@ -97,6 +109,7 @@ const Configuration = () => {
                   <div className="text-white font-mono text-sm">
                     <div>ELSAI_PROMPT_API_KEY="YOUR API KEY"</div>
                     <div>PROJECT_ID="YOUR PROJECT ID"</div>
+                    <div>PROMPT_MANAGER_API_URL="YOUR DEPLOYED URL"</div>
                   </div>
                 </div>
               </div>

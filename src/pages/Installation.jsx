@@ -89,31 +89,10 @@ const Installation = () => {
                     <h5 className="font-semibold text-gray-800">Installation Command</h5>
                   </div>
                   <pre className="bg-gray-900 text-gray-100 p-4 m-0 overflow-x-auto">
-                    <code>pip install --index-url https://elsai-core-package.optisolbusiness.com/root/elsai-prompts/ elsai-prompts==1.0.0</code>
+                    <code>pip install --index-url https://elsai-core-package.optisolbusiness.com/root/elsai-prompts/ elsai-prompts==1.0.1</code>
                   </pre>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-                  <div className="px-4 py-3 bg-gray-100 border-b border-gray-200">
-                    <h5 className="font-semibold text-gray-800">Usage Example</h5>
-                  </div>
-                  <pre className="bg-gray-900 text-gray-100 p-4 m-0 overflow-x-auto">
-                    <code>{`from elsai_prompts.prompt_manager import PromptManager
-
-# Initialize the PromptManager with your credentials
-prompt_manager = PromptManager(
-    api_key="api-key",
-    project_id="project-id"
-)
-
-# Get the active version of a prompt
-response = prompt_manager.get_active_prompt_version(
-    prompt_name="prompt-name"
-)
-
-print(response)`}</code>
-                  </pre>
-                </div>
               </div>
             </div>
 

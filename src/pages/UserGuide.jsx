@@ -64,6 +64,15 @@ const UserGuide = () => {
 
               <div id="initialization" className="mb-8">
                 <h3 className="text-xl font-bold mb-4">Initialization</h3>
+                <div> For SDK version:  </div>
+                <div className="bg-gray-900 rounded-lg p-4 mb-4">
+                  <pre className="text-gray-100"><code>{`prompt = PromptManager(
+    api_key="YOUR-ELSAI-API-KEY",
+    project_id="YOUR-ELSAI-PROJECT-ID"
+    base_url="YOUR DEPLOYED URL"
+)`}</code></pre>
+                </div>
+                <div> For Saas version:  </div>
                 <div className="bg-gray-900 rounded-lg p-4 mb-4">
                   <pre className="text-gray-100"><code>{`prompt = PromptManager(
     api_key="YOUR-ELSAI-API-KEY",
@@ -85,13 +94,24 @@ const UserGuide = () => {
                   <pre className="text-gray-100"><code>response = prompt.get_active_prompt_version(prompt_name="YOUR-PROMPT-NAME")</code></pre>
                 </div>
                 <p className="text-gray-600 mb-4">Complete usage example:</p>
+                <div>For SDK version:</div>
                 <div className="bg-gray-900 rounded-lg p-4 mb-4">
                   <pre className="text-gray-100"><code>{`from elsai_prompts.prompt_manager import PromptManager
-
+prompt = PromptManager(
+    api_key="YOUR-ELSAI-API-KEY",
+    project_id="YOUR-ELSAI-PROJECT-ID",
+    base_url="YOUR DEPLOYED URL"
+)
+response = prompt.get_active_prompt_version(prompt_name="YOUR-PROMPT-NAME")
+print(response)`}</code></pre>
+                </div>
+                <div> For Saas version:  </div>
+                <div className="bg-gray-900 rounded-lg p-4 mb-4">
+                  <pre className="text-gray-100"><code>{`from elsai_prompts.prompt_manager import PromptManager
 prompt = PromptManager(
     api_key="YOUR-ELSAI-API-KEY",
     project_id="YOUR-ELSAI-PROJECT-ID"
-)
+    )
 response = prompt.get_active_prompt_version(prompt_name="YOUR-PROMPT-NAME")
 print(response)`}</code></pre>
                 </div>
@@ -135,6 +155,20 @@ except KeyError as e:
                 
                 <h4 className="text-lg font-semibold mb-4">Environment Variables</h4>
                 <p className="text-gray-600 mb-4">Use environment variables for secure credential management:</p>
+                <div> For SDK version:</div>
+                <div className="bg-gray-900 rounded-lg p-4 mb-6">
+                  <pre className="text-gray-100"><code>{`import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+prompt = PromptManager(
+    api_key=os.getenv("ELSAI_API_KEY"),
+    project_id=os.getenv("ELSAI_PROJECT_ID"),
+    base_url=os.getenv("PROMPT_MANAGER_API_URL")
+)`}</code></pre>
+                </div>
+                <div> For Saas version:</div>
                 <div className="bg-gray-900 rounded-lg p-4 mb-6">
                   <pre className="text-gray-100"><code>{`import os
 from dotenv import load_dotenv
