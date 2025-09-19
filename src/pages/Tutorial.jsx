@@ -65,7 +65,7 @@ print("LLM response:", response)
 
 
 response = llm.invoke(prompt)
-print("LLM response:", response)`}</code>
+print("LLM response:", response.choices[0].message.content)`}</code>
                 </pre>
               </div>
             </section>
@@ -113,7 +113,7 @@ print("LLM response:", response)
 
 
 response = llm.invoke(prompt)
-print("LLM response:", response)`}</code>
+print("LLM response:", response.choices[0].message.content)`}</code>
                 </pre>
               </div>
             </section>
