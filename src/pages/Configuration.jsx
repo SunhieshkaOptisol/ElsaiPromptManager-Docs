@@ -15,15 +15,34 @@ const Configuration = () => {
         });
       },
       {
-        rootMargin: '-100px 0px -80% 0px'
+        rootMargin: '-100px 0px -60% 0px'
       }
     );
 
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((section) => observer.observe(section));
+    const sectionIds = [
+      'environment-setup',
+      'required-configuration',
+      'configuration-details',
+      'sdk-version',
+      'saas-version'
+    ];
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el) => Boolean(el));
 
-    return () => sections.forEach((section) => observer.unobserve(section));
+    elements.forEach((el) => observer.observe(el));
+
+    return () => elements.forEach((el) => observer.unobserve(el));
   }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+    const headerOffset = 80;
+    const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetTop = elementTop - headerOffset;
+    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  };
 
   return (
     <div className="relative flex gap-12">
@@ -137,6 +156,7 @@ const Configuration = () => {
         <nav className="space-y-1">
           <a 
             href="#environment-setup" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('environment-setup'); }}
             className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
               activeSection === 'environment-setup' 
                 ? 'border-blue-600 text-blue-600 font-medium' 
@@ -148,6 +168,7 @@ const Configuration = () => {
           <div className="ml-4">
             <a 
               href="#required-configuration" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('required-configuration'); }}
               className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
                 activeSection === 'required-configuration' 
                   ? 'border-blue-600 text-blue-600 font-medium' 
@@ -158,6 +179,7 @@ const Configuration = () => {
             </a>
             <a 
               href="#configuration-details" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('configuration-details'); }}
               className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
                 activeSection === 'configuration-details' 
                   ? 'border-blue-600 text-blue-600 font-medium' 
@@ -169,6 +191,7 @@ const Configuration = () => {
           </div>
           <a 
             href="#sdk-version" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('sdk-version'); }}
             className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
               activeSection === 'sdk-version' 
                 ? 'border-blue-600 text-blue-600 font-medium' 
@@ -179,6 +202,7 @@ const Configuration = () => {
           </a>
           <a 
             href="#saas-version" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('saas-version'); }}
             className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
               activeSection === 'saas-version' 
                 ? 'border-blue-600 text-blue-600 font-medium' 

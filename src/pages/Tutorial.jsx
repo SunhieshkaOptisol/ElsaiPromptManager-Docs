@@ -1,8 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 
 const Tutorial = () => {
+  const [activeSection, setActiveSection] = useState('sdk');
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: '-100px 0px -60% 0px'
+      }
+    );
+
+    const sectionIds = ['sdk', 'saas'];
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el) => Boolean(el));
+
+    elements.forEach((el) => observer.observe(el));
+
+    return () => elements.forEach((el) => observer.unobserve(el));
+  }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+    const headerOffset = 80;
+    const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetTop = elementTop - headerOffset;
+    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  };
+
   return (
     <div className="relative flex gap-12">
       <div className="flex-1">
@@ -20,7 +55,7 @@ const Tutorial = () => {
           <div className="prose max-w-none mb-16">
             <h1 className="text-4xl font-bold mb-8">Tutorial</h1>
             
-            <section className="mb-12">
+            <section id="sdk" className="mb-12">
               <h2 className="text-2xl font-bold mb-6">Usage Example for SDK version</h2>
               <p className="text-gray-600 mb-6">
                 Learn how to integrate Elsai Prompt Manager with Azure OpenAI to create a complete AI workflow using elsai prompt sdk package
@@ -69,7 +104,7 @@ print("LLM response:", response.choices[0].message.content)`}</code>
                 </pre>
               </div>
             </section>
-            <section className="mb-12">
+            <section id="saas" className="mb-12">
               <h2 className="text-2xl font-bold mb-6">Usage Example for Saas version</h2>
               <p className="text-gray-600 mb-6">
                 To integrate Elsai Prompt Manager with Azure OpenAI to create a complete AI workflow using elsai prompt saas package
@@ -119,6 +154,34 @@ print("LLM response:", response.choices[0].message.content)`}</code>
             </section>
           </div>
         </div>
+      </div>
+
+      {/* Right Side Navigation */}
+      <div className="hidden lg:block w-64 fixed right-8 top-24">
+        <nav className="space-y-1">
+          <a 
+            href="#sdk" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('sdk'); }}
+            className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
+              activeSection === 'sdk' 
+                ? 'border-blue-600 text-blue-600 font-medium' 
+                : 'border-gray-200 text-gray-600'
+            }`}
+          >
+            SDK
+          </a>
+          <a 
+            href="#saas" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('saas'); }}
+            className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
+              activeSection === 'saas' 
+                ? 'border-blue-600 text-blue-600 font-medium' 
+                : 'border-gray-200 text-gray-600'
+            }`}
+          >
+            SAAS
+          </a>
+        </nav>
       </div>
     </div>
   );

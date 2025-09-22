@@ -15,15 +15,38 @@ const UserGuide = () => {
         });
       },
       {
-        rootMargin: '-100px 0px -80% 0px'
+        rootMargin: '-100px 0px -60% 0px'
       }
     );
 
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((section) => observer.observe(section));
+    const sectionIds = [
+      'overview',
+      'functionalities',
+      'import',
+      'initialization',
+      'retrieving-prompts',
+      'custom-headers',
+      'error-handling',
+      'best-practices',
+      'common-use-cases'
+    ];
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el) => Boolean(el));
 
-    return () => sections.forEach((section) => observer.unobserve(section));
+    elements.forEach((el) => observer.observe(el));
+
+    return () => elements.forEach((el) => observer.unobserve(el));
   }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+    const headerOffset = 80;
+    const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetTop = elementTop - headerOffset;
+    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  };
 
   return (
     <div className="relative flex gap-12">
@@ -226,6 +249,7 @@ response = prompt.get_active_prompt_version("welcome_message")`}</code></pre>
         <nav className="space-y-1">
           <a 
             href="#overview" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('overview'); }}
             className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
               activeSection === 'overview' 
                 ? 'border-blue-600 text-blue-600 font-medium' 
@@ -236,6 +260,7 @@ response = prompt.get_active_prompt_version("welcome_message")`}</code></pre>
           </a>
           <a 
             href="#functionalities" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('functionalities'); }}
             className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
               activeSection === 'functionalities' 
                 ? 'border-blue-600 text-blue-600 font-medium' 
@@ -247,6 +272,7 @@ response = prompt.get_active_prompt_version("welcome_message")`}</code></pre>
           <div className="ml-4 space-y-1">
             <a 
               href="#import" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('import'); }}
               className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
                 activeSection === 'import' 
                   ? 'border-blue-600 text-blue-600 font-medium' 
@@ -257,6 +283,7 @@ response = prompt.get_active_prompt_version("welcome_message")`}</code></pre>
             </a>
             <a 
               href="#initialization" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('initialization'); }}
               className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
                 activeSection === 'initialization' 
                   ? 'border-blue-600 text-blue-600 font-medium' 
@@ -267,6 +294,7 @@ response = prompt.get_active_prompt_version("welcome_message")`}</code></pre>
             </a>
             <a 
               href="#retrieving-prompts" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('retrieving-prompts'); }}
               className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
                 activeSection === 'retrieving-prompts' 
                   ? 'border-blue-600 text-blue-600 font-medium' 
@@ -277,6 +305,7 @@ response = prompt.get_active_prompt_version("welcome_message")`}</code></pre>
             </a>
             <a 
               href="#custom-headers" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('custom-headers'); }}
               className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
                 activeSection === 'custom-headers' 
                   ? 'border-blue-600 text-blue-600 font-medium' 
@@ -287,6 +316,7 @@ response = prompt.get_active_prompt_version("welcome_message")`}</code></pre>
             </a>
             <a 
               href="#error-handling" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('error-handling'); }}
               className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
                 activeSection === 'error-handling' 
                   ? 'border-blue-600 text-blue-600 font-medium' 
@@ -297,6 +327,7 @@ response = prompt.get_active_prompt_version("welcome_message")`}</code></pre>
             </a>
             <a 
               href="#best-practices" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('best-practices'); }}
               className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
                 activeSection === 'best-practices' 
                   ? 'border-blue-600 text-blue-600 font-medium' 
@@ -307,6 +338,7 @@ response = prompt.get_active_prompt_version("welcome_message")`}</code></pre>
             </a>
             <a 
               href="#common-use-cases" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('common-use-cases'); }}
               className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
                 activeSection === 'common-use-cases' 
                   ? 'border-blue-600 text-blue-600 font-medium' 

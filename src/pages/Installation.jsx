@@ -15,15 +15,28 @@ const Installation = () => {
         });
       },
       {
-        rootMargin: '-100px 0px -80% 0px'
+        rootMargin: '-100px 0px -60% 0px'
       }
     );
 
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((section) => observer.observe(section));
+    const sectionIds = ['prerequisites', 'installation-methods', 'sdk-version', 'saas-version'];
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el) => Boolean(el));
 
-    return () => sections.forEach((section) => observer.unobserve(section));
+    elements.forEach((el) => observer.observe(el));
+
+    return () => elements.forEach((el) => observer.unobserve(el));
   }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+    const headerOffset = 80; // account for fixed header
+    const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetTop = elementTop - headerOffset;
+    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  };
 
   return (
     <div className="relative flex gap-12">
@@ -71,25 +84,12 @@ const Installation = () => {
             <div id="sdk-package-installation" className="mb-8">
               <h4 className="text-lg font-semibold mb-4">1.1 Package Installation</h4>
               <div className="bg-gray-50 rounded-lg p-6 mb-6">
-                <p className="mb-4">
-                  The backend service is available at:{' '}
-                  <a 
-                    href="https://managed-services.elsaifoundry.ai/docs" 
-                    className="text-blue-600 hover:text-blue-800 break-words"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                   https://managed-services.elsaifoundry.ai
-                  </a>
-                </p>
-                <p className="mb-4">This is where you can create prompts and store them in projects.</p>
-                
                 <div className="bg-white rounded-lg border border-gray-200 overflow-hidden mb-6">
                   <div className="px-4 py-3 bg-gray-100 border-b border-gray-200">
                     <h5 className="font-semibold text-gray-800">Installation Command</h5>
                   </div>
                   <pre className="bg-gray-900 text-gray-100 p-4 m-0 overflow-x-auto">
-                    <code>pip install --index-url https://elsai-core-package.optisolbusiness.com/root/elsai-prompts/ elsai-prompts==1.0.1</code>
+                    <code>pip install --index-url https://elsai-core-package.optisolbusiness.com/root/elsai-prompts/ elsai-prompts==1.1.0</code>
                   </pre>
                 </div>
 
@@ -204,6 +204,7 @@ const Installation = () => {
         <nav className="space-y-1">
           <a 
             href="#prerequisites" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('prerequisites'); }}
             className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
               activeSection === 'prerequisites' 
                 ? 'border-blue-600 text-blue-600 font-medium' 
@@ -214,6 +215,7 @@ const Installation = () => {
           </a>
           <a 
             href="#installation-methods" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('installation-methods'); }}
             className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
               activeSection === 'installation-methods' 
                 ? 'border-blue-600 text-blue-600 font-medium' 
@@ -225,6 +227,7 @@ const Installation = () => {
           <div className="ml-4">
             <a 
               href="#sdk-version" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('sdk-version'); }}
               className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
                 activeSection === 'sdk-version' 
                   ? 'border-blue-600 text-blue-600 font-medium' 
@@ -235,6 +238,7 @@ const Installation = () => {
             </a>
             <a 
               href="#saas-version" 
+              onClick={(e) => { e.preventDefault(); scrollToSection('saas-version'); }}
               className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
                 activeSection === 'saas-version' 
                   ? 'border-blue-600 text-blue-600 font-medium' 

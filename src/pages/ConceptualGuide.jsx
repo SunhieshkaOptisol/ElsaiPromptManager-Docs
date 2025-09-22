@@ -14,15 +14,28 @@ const ConceptualGuide = () => {
         });
       },
       {
-        rootMargin: '-100px 0px -80% 0px'
+        rootMargin: '-100px 0px -60% 0px'
       }
     );
 
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((section) => observer.observe(section));
+    const sectionIds = ['overview', 'features'];
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el) => Boolean(el));
 
-    return () => sections.forEach((section) => observer.unobserve(section));
+    elements.forEach((el) => observer.observe(el));
+
+    return () => elements.forEach((el) => observer.unobserve(el));
   }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+    const headerOffset = 80;
+    const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetTop = elementTop - headerOffset;
+    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  };
 
   return (
     <div className="relative flex gap-12">
@@ -117,6 +130,7 @@ const ConceptualGuide = () => {
         <nav className="space-y-1">
           <a 
             href="#overview" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('overview'); }}
             className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
               activeSection === 'overview' 
                 ? 'border-blue-600 text-blue-600 font-medium' 
@@ -127,6 +141,7 @@ const ConceptualGuide = () => {
           </a>
           <a 
             href="#features" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('features'); }}
             className={`block py-1 pl-4 border-l-2 hover:text-blue-600 transition-colors duration-200 ${
               activeSection === 'features' 
                 ? 'border-blue-600 text-blue-600 font-medium' 
