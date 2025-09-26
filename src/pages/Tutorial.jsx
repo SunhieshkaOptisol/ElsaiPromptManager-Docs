@@ -86,7 +86,7 @@ prompt = prompt_manager.get_active_prompt_version(prompt_name="YOUR-PROMPT-NAME"
 
 # Fill in variables, for example my prompt is "Extract items from {data}"
 
-filled_prompt = prompt_template.format(data="Your data here") # Fill in your data
+filled_prompt = prompt.format(data="Your data here") # Fill in your data
 
 print("Final prompt:", filled_prompt) #Cross-check if your data has been added
 
@@ -134,7 +134,7 @@ prompt = prompt_manager.get_active_prompt_version(prompt_name="YOUR-PROMPT-NAME"
 
 # Fill in variables, for example my prompt is "Extract items from {data}"
 
-filled_prompt = prompt_template.format(data="Your data here") # Fill in your data
+filled_prompt = prompt.format(data="Your data here") # Fill in your data
 
 print("Final prompt:", filled_prompt) #Cross-check if your data has been added
 
