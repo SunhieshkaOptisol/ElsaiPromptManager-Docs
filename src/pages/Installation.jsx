@@ -89,7 +89,7 @@ const Installation = () => {
                     <h5 className="font-semibold text-gray-800">Installation Command</h5>
                   </div>
                   <pre className="bg-gray-900 text-gray-100 p-4 m-0 overflow-x-auto">
-                    <code>pip install --index-url https://elsai-core-package.optisolbusiness.com/root/elsai-prompts/ elsai-prompts==1.1.0</code>
+                    <code>pip install --extra-index-url https://elsai-core-package.optisolbusiness.com/root/elsai-prompts-sass/ elsai-prompts==1.0.0</code>
                   </pre>
                 </div>
 
@@ -143,7 +143,7 @@ const Installation = () => {
                     <h5 className="font-semibold text-gray-800">Installation Command</h5>
                   </div>
                   <pre className="bg-gray-900 text-gray-100 p-4 m-0 overflow-x-auto">
-                    <code>pip install --index-url https://elsai-core-package.optisolbusiness.com/root/elsai-prompts-sass/ elsai-prompts==1.0.0</code>
+                    <code>pip install --extra-index-url https://elsai-core-package.optisolbusiness.com/root/elsai-prompts-sass/ elsai-prompts==1.0.0</code>
                   </pre>
                 </div>
               </div>
